@@ -1,0 +1,3 @@
+[submodule "src/content"]
+	path = src/content
+	url = git@artsbymat.github.com:artsbymat/2nd-brain.git

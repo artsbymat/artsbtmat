@@ -20,6 +20,13 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+    rules: {
+      semi: "error",
+      "no-unused-vars": "warn"
+    }
+  }
 ];
 
 export default eslintConfig;
