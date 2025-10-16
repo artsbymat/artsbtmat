@@ -19,4 +19,4 @@ git submodule sync
 git submodule update --init
 
 # The original build script
-npm run generate
+npm run build
