@@ -1,10 +1,6 @@
 export const UI = {
   NAVIGATION_LINKS: [
     {
-      title: "About",
-      href: "/"
-    },
-    {
       title: "Work",
       href: "/work"
     },
