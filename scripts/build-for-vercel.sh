@@ -13,7 +13,7 @@ echo "If the submodule update fails, please regenerate the Vercel submodule toke
 echo "https://github.com/settings/tokens?type=beta"
 echo "https://vercel.com/<my-own-projects>/<project-name>/settings/environment-variables"
 
-git submodule set-url <my-submodule >"https://${GITHUB_PAT}@github.com/artsbymat/2nd-brain.git"
+git submodule set-url src/content "https://${GITHUB_PAT}@github.com/artsbymat/2nd-brain.git"
 
 git submodule sync
 git submodule update --init
