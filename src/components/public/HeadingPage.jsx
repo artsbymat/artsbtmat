@@ -73,10 +73,11 @@ export default function HeadingPage({
   title,
   description,
   variant = "default",
-  className = "",
+  containerClassName = "",
   titleClassName = "",
   descClassName = "",
-  as: Component = "h1"
+  as: Component = "h1",
+  children
 }) {
   const variantMap = {
     default: {
@@ -89,7 +90,7 @@ export default function HeadingPage({
   const v = variantMap[variant] || variantMap.default;
 
   return (
-    <div className={`border-b-border w-full border-b-1 ${className}`}>
+    <div className={`border-b-border w-full border-b-1 ${containerClassName}`}>
       <div className={`graph-paper mx-auto max-w-7xl px-4 md:px-8 ${v.wrapper}`}>
         <div className={`flex items-start justify-between gap-6`}>
           <div className="min-w-0 flex-1">
@@ -102,6 +103,7 @@ export default function HeadingPage({
             </Component>
 
             {description && <p className={`${v.desc} ${descClassName} mt-3`}>{description}</p>}
+            {children || null}
           </div>
         </div>
       </div>

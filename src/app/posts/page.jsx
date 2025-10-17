@@ -16,8 +16,8 @@ export default function PostsPage() {
   return (
     <div>
       <HeadingPage title={title} description={description} />
-      <BlogPosts posts={blogPosts} />
-      <NotesPosts posts={notesPosts} />
+      <BlogPosts posts={blogPosts} isShowViewAll />
+      <NotesPosts posts={notesPosts} isShowViewAll />
       <MindmapPosts posts={excalidrawPosts} />
     </div>
   );

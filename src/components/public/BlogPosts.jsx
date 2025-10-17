@@ -6,7 +6,7 @@ import { BlogPostCard } from "./BlogPostCard";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-export function BlogPosts({ posts }) {
+export function BlogPosts({ posts, isShowViewAll = false }) {
   const [sortOrder, setSortOrder] = useState("DESC");
 
   const sortedPosts = useMemo(() => {
@@ -22,41 +22,42 @@ export function BlogPosts({ posts }) {
   };
 
   return (
-    <section className="mx-auto max-w-7xl">
-      <div className="px-4">
-        <div className="border-border flex items-center justify-between border-b py-4">
-          <h2 className="text-xl font-medium">Blog Posts</h2>
-          <button
-            onClick={toggleSort}
-            className="flex items-center gap-1 text-sm"
-            title={`Sort ${sortOrder === "ASC" ? "newest first" : "oldest first"}`}
-          >
-            {sortOrder === "ASC" ? (
-              <CalendarArrowUp className="size-5" />
-            ) : (
-              <CalendarArrowDown className="size-5" />
-            )}
-          </button>
-        </div>
-
-        {sortedPosts.length > 0 ? (
-          <div className="divide-border divide-y">
-            {sortedPosts.map((post) => {
-              return <BlogPostCard key={post.slug} post={post} />;
-            })}
-          </div>
-        ) : (
-          <div className="py-4">
-            <p className="text-accent text-base font-medium">Ooops... Blog Posts Not Found</p>
-          </div>
-        )}
-
-        <hr className="border-border w-5 border-b-1" />
-
-        <Button asChild className="mt-4">
-          <Link href="/blog">View All Blog Posts</Link>
-        </Button>
+    <section className="mx-auto max-w-7xl px-4 md:px-8">
+      <div className="border-border flex items-center justify-between border-b py-4">
+        <h2 className="text-xl font-medium">Blog Posts</h2>
+        <button
+          onClick={toggleSort}
+          className="flex items-center gap-1 text-sm"
+          title={`Sort ${sortOrder === "ASC" ? "newest first" : "oldest first"}`}
+        >
+          {sortOrder === "ASC" ? (
+            <CalendarArrowUp className="size-5" />
+          ) : (
+            <CalendarArrowDown className="size-5" />
+          )}
+        </button>
       </div>
+
+      {sortedPosts.length > 0 ? (
+        <div className="divide-border divide-y">
+          {sortedPosts.map((post) => {
+            return <BlogPostCard key={post.slug} post={post} />;
+          })}
+        </div>
+      ) : (
+        <div className="py-4">
+          <p className="text-accent text-base font-medium">Ooops... Blog Posts Not Found</p>
+        </div>
+      )}
+
+      {isShowViewAll && (
+        <>
+          <hr className="border-border w-5 border-b-1" />
+          <Button asChild className="mt-4">
+            <Link href="/posts/blog">View All Blog Posts</Link>
+          </Button>
+        </>
+      )}
     </section>
   );
 }
