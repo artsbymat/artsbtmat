@@ -1,22 +1,26 @@
 #!/usr/bin/env bash
+set -e
 
-cd $(dirname $0)/../ || exit
+cd "$(dirname "$0")/../" || exit 1
 
+# Pastikan token tersedia
 if [ -z "${GITHUB_PAT}" ]; then
-  echo "The environment variable GITHUB_PAT is not set. Please regenerate the Vercel submodule token on Github and register it as the GITHUB_PAT environment variable in Vercel."
-  echo "https://github.com/settings/tokens?type=beta"
-  echo "https://vercel.com/<my-own-projects>/<project-name>/settings/environment-variables"
+  echo "❌ GITHUB_PAT tidak ditemukan. Silakan buat token baru dan daftarkan di environment Vercel."
+  echo "👉 https://github.com/settings/tokens?type=beta"
+  echo "👉 https://vercel.com/<your-org>/<project>/settings/environment-variables"
   exit 1
 fi
 
-echo "If the submodule update fails, please regenerate the Vercel submodule token on Github and register it as the GITHUB_PAT environment variable in Vercel."
-echo "https://github.com/settings/tokens?type=beta"
-echo "https://vercel.com/<my-own-projects>/<project-name>/settings/environment-variables"
+# Lokasi submodule
+CONTENT_DIR="src/content"
+CONTENT_REPO="https://github.com/artsbymat/2nd-brain.git"
+BRANCH="main"
 
-git submodule set-url src/content "https://${GITHUB_PAT}@github.com/artsbymat/2nd-brain.git"
+echo "🔄 Delete old submodule..."
+rm -rf "${CONTENT_DIR}"
 
-git submodule sync
-git submodule update --init
+echo "📥 re-cloning content repository..."
+git clone --depth 1 --branch "${BRANCH}" "https://${GITHUB_PAT}@${CONTENT_REPO#https://}" "${CONTENT_DIR}"
 
-# The original build script
+echo "🚀 Success re-cloning, building app..."
 npm run build
