@@ -22,7 +22,7 @@ export function NotesPosts({ posts, isShowViewAll = false }) {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-4 md:px-8">
+    <section className="mx-auto mb-4 max-w-7xl px-4 md:px-8">
       <div className="border-border flex items-center justify-between border-b py-4">
         <h2 className="text-xl font-medium">Notes</h2>
         <button

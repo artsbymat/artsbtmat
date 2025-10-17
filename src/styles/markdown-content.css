@@ -219,10 +219,6 @@
   @apply text-link;
 }
 
-#markdown-content a:hover {
-  text-decoration: underline wavy;
-}
-
 /* Horizontal rule */
 #markdown-content hr {
   border: none;

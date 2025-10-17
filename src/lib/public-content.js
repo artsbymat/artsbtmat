@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { extractTableOfContent, filename2slug, heading2id } from "./utils";
 import { cache } from "react";
+import { IGNORE_PATHS, SLUG_RULES } from "@/data/constants";
 
 const CONTENT_DIR = path.join(process.cwd(), "src/content");
 
@@ -31,34 +32,6 @@ function getAllMarkdownFiles(dir, ignoreList = []) {
     return [];
   });
 }
-
-const IGNORE_PATHS = [
-  "01. Daily Notes",
-  "02. Reference Notes/Kanban",
-  "02. Reference Notes/Excalidraw",
-  "05. Outputs/Video",
-  "Templates",
-  "Attachments"
-];
-
-/**
- * Defines custom path-to-slug mapping rules.
- *
- * Keys represent relative paths from the `src/content` directory.
- * Values define the desired slug prefix.
- *
- * Example:
- *   "01. Daily Notes" → "/posts/daily"
- *   "02. Reference Notes/Topics" → "/posts/topics"
- */
-const SLUG_RULES = {
-  "02. Reference Notes/Topics": "/posts/notes/topics",
-  "02. Reference Notes/Excalidraw": "/posts/notes/excalidraw",
-  "03. Permanent Notes": "/posts/notes/permanent",
-  "04. Hub Notes": "/posts/notes/hub",
-  "05. Outputs/Blog": "/posts/blog",
-  "05. Outputs/Static": "/posts/static"
-};
 
 /**
  * Resolves a Markdown file path into a custom slug based on defined rules.
@@ -121,31 +94,31 @@ function buildSlugIndex(posts) {
 /**
  * Convert Obsidian-style wikilinks to Markdown syntax, skipping code regions.
  *
- * @param {string} content
+ * @param {{frontmatter: Record<string, any>, content: string}} post
  * @param {Record<string, {slug: string, headings: Map<string,string>}>} slugIndex
  * @returns {string}
  */
-function convertWikiLinks(content, slugIndex) {
-  // --- 1️⃣ Lindungi fenced code blocks dan inline code -------------------
+function convertWikiLinks(post, slugIndex) {
+  let { content } = post;
+
   const codeBlocks = [];
   content = content.replace(/(```[\s\S]*?```|~~~[\s\S]*?~~~|`[^`]*`)/g, (m) => {
     codeBlocks.push(m);
     return `%%CODEBLOCK_${codeBlocks.length - 1}%%`;
   });
 
-  // --- 2️⃣ Proses bagian non-kode ---------------------------------------
+  const imageBasePath = "/content/Attachments";
 
-  // Image wikilinks: ![[filename|size]]
+  // --- Image wikilinks: ![[filename|size]] ---
   content = content.replace(/!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g, (match, filename, size) => {
     const cleanName = path.basename(filename.trim());
     const encodedPath = encodeURIComponent(cleanName);
     const altText = size ? `${cleanName} (${size})` : cleanName;
-    return `![${altText}](/content/Attachments/${encodedPath})`;
+    return `![${altText}](${imageBasePath}/${encodedPath})`;
   });
 
-  // Text wikilinks: [[target|label]] or [[target#heading|label]]
+  // --- Text wikilinks: [[target|label]] atau [[target#heading|label]] ---
   content = content.replace(/\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g, (match, target, label) => {
-    // Pisahkan nama file dan heading
     const [filePart, headingPart] = target.split("#");
 
     const key = filename2slug(path.basename(filePart.trim()));
@@ -153,20 +126,16 @@ function convertWikiLinks(content, slugIndex) {
     if (!slugInfo) return label || target;
 
     let link = slugInfo.slug;
-
-    // Jika ada heading reference → tambahkan anchor
     if (headingPart) {
       const anchor = heading2id(headingPart.trim());
       link += `#${anchor}`;
     }
 
-    // Jika label dimulai dengan '#' → anggap teks literal, bukan heading
     const safeLabel = label?.startsWith("#") ? label : label || target;
-
     return `[${safeLabel}](${link})`;
   });
 
-  // --- 3️⃣ Kembalikan code blocks ---------------------------------------
+  // --- Restore code blocks ---
   content = content.replace(/%%CODEBLOCK_(\d+)%%/g, (_, i) => codeBlocks[i]);
 
   return content;
@@ -211,7 +180,7 @@ export const getAllPosts = cache(() => {
   // Convert wikilinks after ToC is known
   return rawPosts.map((post) => ({
     ...post,
-    content: convertWikiLinks(post.content, slugIndex)
+    content: convertWikiLinks(post, slugIndex)
   }));
 });
 
@@ -347,25 +316,6 @@ export function getAllHubPosts() {
  */
 export function getAllPermanentPosts() {
   return getAllPosts().filter((post) => post.slug.startsWith("/posts/notes/permanent"));
-}
-
-/**
- * Returns all posts categorized under "Excalidraw" notes.
- *
- * It filters all posts whose slug starts with `/posts/notes/excalidraw`.
- * Usually used for visual notes or mind maps created with Excalidraw.
- *
- * Example:
- * ```js
- * [
- *   { slug: "/posts/notes/excalidraw/mindmap-example", title: "Mindmap Example" }
- * ]
- * ```
- *
- * @returns {Array<Object>} Array of Excalidraw note posts.
- */
-export function getAllExcalidrawPosts() {
-  return getAllPosts().filter((post) => post.slug.startsWith("/posts/notes/excalidraw"));
 }
 
 /**

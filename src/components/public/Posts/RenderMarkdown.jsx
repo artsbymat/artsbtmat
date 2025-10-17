@@ -11,10 +11,13 @@ import rehypeExternalLinks from "rehype-external-links";
 import { arabicIcon, latinIcon, translateIcon } from "@/components/ui/icons";
 import rehypeShiftHeading from "rehype-shift-heading";
 import rehypeSlug from "@/lib/rehype/rehype-slug";
-import { CustomPre } from "./pre";
-import "@/styles/markdown-content.css";
 import obsidianHighlight from "@/lib/remark/obsidian-highlight";
 import remarkTagLinks from "@/lib/remark/obsidian-tag-link";
+import { CustomPre } from "./pre";
+import { CustomImage } from "./img";
+import { CustomP } from "./p";
+
+import "@/styles/markdown-content.css";
 
 export function RenderMarkdown({ detail }) {
   const remarkPlugins = [remarkGfm, remarkMath, obsidianHighlight, remarkTagLinks];
@@ -48,7 +51,9 @@ export function RenderMarkdown({ detail }) {
   return (
     <MarkdownAsync
       components={{
-        pre: (props) => <CustomPre {...props} />
+        pre: (props) => <CustomPre {...props} />,
+        p: CustomP,
+        img: CustomImage
       }}
       remarkPlugins={remarkPlugins}
       rehypePlugins={rehypePlugins}

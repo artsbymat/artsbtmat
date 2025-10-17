@@ -137,3 +137,14 @@ export function formattedDateMonthYear(date) {
     year: "numeric"
   });
 }
+
+/**
+ * Removes any substring that appears after the first dot ('.') in the title.
+ * Example: "Fitur Di Obsidian Excalidraw.Light" → "Fitur Di Obsidian Excalidraw"
+ *
+ * @param {string} string - Input string
+ * @returns {string} Trimmed title
+ */
+export function formatMindmapTitle(string) {
+  return string.replace(/\..*$/, "");
+}

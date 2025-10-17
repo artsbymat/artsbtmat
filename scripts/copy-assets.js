@@ -45,10 +45,7 @@ export function copyAttachments() {
   const srcRoot = path.join(__dirname, "../src/content");
   const destRoot = path.join(__dirname, "../public/content");
 
-  const foldersToCopy = [
-    { name: "Attachments", src: path.join(srcRoot, "Attachments") },
-    { name: "Excalidraw", src: path.join(srcRoot, "05. Outputs/Excalidraw") }
-  ];
+  const foldersToCopy = [{ name: "Attachments", src: path.join(srcRoot, "Attachments") }];
 
   // Clean up existing destination folder
   if (fs.existsSync(destRoot)) {
