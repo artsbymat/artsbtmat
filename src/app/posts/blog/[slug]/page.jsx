@@ -22,7 +22,7 @@ export default async function DetailBlogPage({ params }) {
 
   return (
     <article>
-      <HeadingPage title={title} description={description} />
+      <HeadingPage title={title} description={description} variant="posts" />
       <div id="markdown-content">
         <RenderMarkdown detail={detail} />
       </div>

@@ -84,6 +84,11 @@ export default function HeadingPage({
       wrapper: "py-6 md:py-8",
       title: "text-3xl md:text-4xl font-medium",
       desc: "mt-3 text-sm md:text-base text-muted max-w-prose"
+    },
+    posts: {
+      wrapper: "py-6 md:py-8",
+      title: "text-3xl md:text-4xl font-medium",
+      desc: "mt-3 text-sm md:text-base text-muted"
     }
   };
 

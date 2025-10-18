@@ -54,7 +54,7 @@ export function NotesPosts({ posts, heading = "Notes", isShowViewAll = false }) 
         <>
           <hr className="border-border w-5 border-b-1" />
           <Button asChild className="mt-4">
-            <Link href="/posts/notes">View All Blog Posts</Link>
+            <Link href="/posts/notes">View All Notes</Link>
           </Button>
         </>
       )}

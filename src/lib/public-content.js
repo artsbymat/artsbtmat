@@ -337,6 +337,24 @@ export function getAllBlogPosts() {
 }
 
 /**
+ * Returns all static data posts categorized under "static".
+ *
+ * It filters all posts whose slug starts with `/posts/static`.
+ *
+ * Example:
+ * ```js
+ * [
+ *   { slug: "/posts/static/about", title: "About" }
+ * ]
+ * ```
+ *
+ * @returns {Array<Object>} Array of blog posts.
+ */
+export function getAllStaticPosts() {
+  return getAllPosts().filter((post) => post.slug.startsWith("/posts/static"));
+}
+
+/**
  * Returns all "Notes" posts — including topics, hub, and permanent notes.
  *
  * It combines multiple note categories for general listing pages or indexing.

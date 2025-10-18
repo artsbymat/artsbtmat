@@ -1,7 +1,20 @@
+import HeadingPage from "@/components/public/HeadingPage";
+import { RenderMarkdown } from "@/components/public/Posts/RenderMarkdown";
+import { getAllStaticPosts } from "@/lib/public-content";
+
 export default function WorkPage() {
+  const data = getAllStaticPosts().filter((post) => post.slug === "/posts/static/work")[0];
+
+  const title = "Work – Personal Projects & Experiments";
+  const description =
+    "A collection of personal projects and experiments that explore ideas through design, code, and writing. Each work reflects ongoing curiosity and practical exploration.";
+
   return (
     <div>
-      <h1>Work Page</h1>
+      <HeadingPage title={title} description={description} />
+      <div id="markdown-content">
+        <RenderMarkdown detail={data} />
+      </div>
     </div>
   );
 }

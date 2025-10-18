@@ -30,12 +30,17 @@ export function RenderExcalidraw({ src, alt }) {
   }
 
   return (
-    <div
-      ref={containerRef}
-      role="img"
-      aria-label={alt}
-      className="excalidraw-svg"
-      dangerouslySetInnerHTML={{ __html: svgContent }}
-    />
+    <>
+      <div
+        ref={containerRef}
+        role="img"
+        aria-label={alt}
+        className="excalidraw-svg"
+        dangerouslySetInnerHTML={{ __html: svgContent }}
+      />
+      <p className="hidden text-sm! text-yellow-700 md:mt-1! md:block">
+        Click and hold to enlarge. SHIFT + wheel to zoom. ESC to reset.
+      </p>
+    </>
   );
 }
