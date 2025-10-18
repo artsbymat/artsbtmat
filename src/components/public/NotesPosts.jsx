@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { NotePostCard } from "./NotePostCard";
 
-export function NotesPosts({ posts, isShowViewAll = false }) {
+export function NotesPosts({ posts, heading = "Notes", isShowViewAll = false }) {
   const [sortOrder, setSortOrder] = useState("DESC");
 
   const sortedPosts = useMemo(() => {
@@ -24,7 +24,7 @@ export function NotesPosts({ posts, isShowViewAll = false }) {
   return (
     <section className="mx-auto mb-4 max-w-7xl px-4 md:px-8">
       <div className="border-border flex items-center justify-between border-b py-4">
-        <h2 className="text-xl font-medium">Notes</h2>
+        <h2 className="text-xl font-medium">{heading}</h2>
         <button
           onClick={toggleSort}
           className="flex items-center gap-1 text-sm"

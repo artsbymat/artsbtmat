@@ -14,7 +14,7 @@ export function NotePostCard({ post }) {
           </Link>
 
           {tags.length > 0 && (
-            <p className="text-foreground/80 text-sm">
+            <p className="text-foreground text-sm font-light">
               tags:{" "}
               {tags.map((tag, index) => (
                 <span key={tag}>
@@ -25,7 +25,7 @@ export function NotePostCard({ post }) {
             </p>
           )}
         </div>
-        <p className="text-foreground/80 text-sm">
+        <p className="text-foreground/80 text-xs">
           {formattedDateMonthYear(new Date(post.frontmatter.created || new Date()))}
         </p>
       </div>

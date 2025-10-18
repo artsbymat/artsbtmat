@@ -360,3 +360,82 @@ export function getAllNotesPosts() {
       post.slug.startsWith("/posts/notes/hub")
   );
 }
+
+/**
+ * Retrieve all unique tags across all posts.
+ *
+ * @function getAllUniqueTags
+ * @returns {string[]} An array containing all unique tags found in the posts.
+ *
+ * @example
+ * // Suppose getAllPosts() returns:
+ * // [
+ * //   { frontmatter: { title: "Post 1", tags: ["css", "frontend"] } },
+ * //   { frontmatter: { title: "Post 2", tags: ["javascript", "frontend"] } },
+ * //   { frontmatter: { title: "Post 3", tags: ["css", "design"] } },
+ * // ]
+ * //
+ * // Then:
+ * // getAllUniqueTags() -> ["css", "frontend", "javascript", "design"]
+ */
+export function getAllUniqueTags() {
+  const posts = getAllPosts();
+
+  // Flatten all tag arrays from posts into a single array
+  const allTags = posts.flatMap((post) => post.frontmatter.tags || []);
+
+  // Remove duplicates using a Set, then convert back to an array
+  return Array.from(new Set(allTags));
+}
+
+/**
+ * Get the number of posts for each tag.
+ * @returns {Record<string, number>} Object mapping tags → post count
+ */
+export function getTagCounts() {
+  const posts = getAllPosts();
+  const counts = {};
+
+  for (const post of posts) {
+    for (const tag of post.frontmatter.tags || []) {
+      counts[tag] = (counts[tag] || 0) + 1;
+    }
+  }
+
+  return counts;
+}
+
+/**
+ * Retrieve all posts containing a specific tag.
+ *
+ * @function getPostsByTag
+ * @param {string} tag - The tag to filter posts by.
+ * @returns {Array<{ frontmatter: object, content: string }>}
+ * An array of post objects that include the given tag.
+ *
+ * @example
+ * // Suppose getAllPosts() returns:
+ * // [
+ * //   { frontmatter: { title: "CSS Basics", tags: ["css", "frontend"] }, content: "..." },
+ * //   { frontmatter: { title: "JS Guide", tags: ["javascript", "frontend"] }, content: "..." },
+ * //   { frontmatter: { title: "Color Theory", tags: ["design"] }, content: "..." },
+ * // ]
+ * //
+ * // getPostsByTag("frontend") ->
+ * // [
+ * //   { frontmatter: { title: "CSS Basics", tags: ["css", "frontend"] }, ... },
+ * //   { frontmatter: { title: "JS Guide", tags: ["javascript", "frontend"] }, ... }
+ * // ]
+ */
+export function getPostsByTag(tag) {
+  const posts = getAllPosts();
+
+  // Normalize tag comparison (case-insensitive)
+  const normalizedTag = tag.toLowerCase();
+
+  // Return posts that include the specified tag
+  return posts.filter((post) => {
+    const tags = post.frontmatter.tags || [];
+    return tags.map((t) => t.toLowerCase()).includes(normalizedTag);
+  });
+}

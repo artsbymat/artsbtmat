@@ -11,9 +11,9 @@ export function BlogPostCard({ post }) {
       <div className="flex flex-col gap-4 md:flex-row md:items-start">
         {/* Date */}
         <div className="flex min-w-[80px] flex-row items-center gap-2 text-xl md:flex-col md:items-start md:justify-between md:gap-y-2">
-          <span className="font-medium">{date[0]}</span>
+          <span className="font-normal">{date[0]}</span>
           <hr className="border-border w-5 border-b-1" />
-          <span className="text-2xl font-bold">{date[1]}</span>
+          <span className="text-2xl font-normal">{date[1]}</span>
         </div>
 
         {/* Thumbnail */}
@@ -36,7 +36,7 @@ export function BlogPostCard({ post }) {
           </Link>
 
           {tags.length > 0 && (
-            <p className="text-foreground/80 text-sm">
+            <p className="text-foreground text-sm font-light">
               tags:{" "}
               {tags.map((tag, index) => (
                 <span key={tag}>
