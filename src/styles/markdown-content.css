@@ -229,9 +229,11 @@
 /* Tables */
 #markdown-content table {
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  font-size: var(--body-sm-size);
+  display: block;
+  overflow-x: auto;
 }
 
 #markdown-content th,
