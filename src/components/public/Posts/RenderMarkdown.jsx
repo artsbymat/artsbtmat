@@ -1,3 +1,4 @@
+import localFont from "next/font/local";
 import { MarkdownAsync } from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
@@ -16,8 +17,12 @@ import remarkTagLinks from "@/lib/remark/obsidian-tag-link";
 import { CustomPre } from "./pre";
 import { CustomImage } from "./img";
 import { CustomP } from "./p";
-
 import "@/styles/markdown-content.css";
+
+const arabicFont = localFont({
+  src: "../../../assets/fonts/LPMQ-Isep-Misbah.woff2",
+  variable: "--font-arabic"
+});
 
 export function RenderMarkdown({ detail }) {
   const remarkPlugins = [remarkGfm, remarkMath, obsidianHighlight, remarkTagLinks];
@@ -48,17 +53,21 @@ export function RenderMarkdown({ detail }) {
     [rehypeRaw]
   ];
 
+  const cssClasses = detail.frontmatter.cssclasses?.join(" ") || [];
+
   return (
-    <MarkdownAsync
-      components={{
-        pre: (props) => <CustomPre {...props} />,
-        p: CustomP,
-        img: CustomImage
-      }}
-      remarkPlugins={remarkPlugins}
-      rehypePlugins={rehypePlugins}
-    >
-      {detail.content}
-    </MarkdownAsync>
+    <div id="markdown-content" className={`${cssClasses} ${arabicFont.variable}`}>
+      <MarkdownAsync
+        components={{
+          pre: (props) => <CustomPre {...props} />,
+          p: CustomP,
+          img: CustomImage
+        }}
+        remarkPlugins={remarkPlugins}
+        rehypePlugins={rehypePlugins}
+      >
+        {detail.content}
+      </MarkdownAsync>
+    </div>
   );
 }

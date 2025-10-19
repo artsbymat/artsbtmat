@@ -1,5 +1,4 @@
 @reference "./globals.css";
-
 @layer utilities {
   #markdown-content ol {
     @apply list-[decimal];
@@ -103,6 +102,7 @@
   --overline-weight: 500;
   --overline-line-height: 1.65;
   --overline-letter-spacing: 0.03em;
+  --arabic-size: 1.8rem;
 
   color: var(--foreground);
   line-height: var(--body-line-height);
@@ -397,11 +397,6 @@ a[rel~="nofollow"]::after {
   background-color: var(--foreground);
 }
 
-/* Custom Classes */
-.quran span[data-rehype-pretty-code-figure] code {
-  font-family: serif;
-}
-
 /* Custom Callout */
 .callout {
   mix-blend-mode: normal !important;
@@ -412,11 +407,11 @@ a[rel~="nofollow"]::after {
   --rc-color-dark: var(--chart-4);
 }
 
-[data-callout="arabic"] .callout-content {
-  font-size: 1.8rem;
+[data-callout="arabic"] div.callout-content p {
+  font-size: 1.8rem !important;
   font-family: var(--font-arabic), sans-serif;
-  line-height: 2;
-  padding-top: 0;
+  line-height: 2 !important;
+  direction: rtl !important;
 }
 
 [data-callout="latin"] {
@@ -431,4 +426,9 @@ a[rel~="nofollow"]::after {
 [data-callout="translation"] {
   --rc-color-light: rgb(190, 140, 93);
   --rc-color-dark: rgb(190, 140, 93);
+}
+
+/* Custom Classes */
+.quran span[data-rehype-pretty-code-figure] code span {
+  font-family: serif;
 }

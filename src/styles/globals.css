@@ -123,8 +123,3 @@
     @apply bg-background text-foreground font-inter;
   }
 }
-
-[data-callout="info"] {
-  --rc-color-light: blue;
-  --rc-color-dark: blue;
-}

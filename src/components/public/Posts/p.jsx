@@ -25,9 +25,9 @@ function containsDivOrImgOrImagePost(node) {
   return found;
 }
 
-export function CustomP({ children, ...props }) {
+export function CustomP({ children }) {
   if (containsDivOrImgOrImagePost(children)) {
     return <>{children}</>;
   }
-  return <p {...props}>{children}</p>;
+  return <p>{children}</p>;
 }
