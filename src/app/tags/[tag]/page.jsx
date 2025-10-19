@@ -15,7 +15,7 @@ export default async function TagPage({ params }) {
   const { tag } = await params;
   const posts = getPostsByTag(tag);
 
-  const title = `"${tag}" – Connected Notes`;
+  const title = `"${tag}" - Connected Notes`;
   const description = `Entries linked by the tag "${tag}", showing how thoughts and writings intersect around this idea.`;
 
   return (

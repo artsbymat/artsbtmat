@@ -3,7 +3,7 @@ import { TagsList } from "@/components/public/TagsList";
 import { getAllUniqueTags, getTagCounts } from "@/lib/public-content";
 
 export default function TagsPage() {
-  const title = "Tags – Explore Connected Posts";
+  const title = "Tags - Explore Connected Posts";
   const description =
     "Browse all tags to discover how posts relate to each other through shared topics and ideas.";
 

@@ -3,7 +3,6 @@ import { getAllStaticJSON } from "@/lib/public-static";
 export function SkillsSection() {
   const skills = getAllStaticJSON().find(({ slug }) => slug === "Skills");
 
-  // Guard clause untuk mencegah error jika data tidak ditemukan
   if (!skills || !Array.isArray(skills.data)) {
     return (
       <section className="mx-auto my-4 max-w-7xl px-4 md:px-8">

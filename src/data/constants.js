@@ -51,6 +51,7 @@ export const SLUG_RULES = {
   "02. Reference Notes/Excalidraw": "/posts/notes/excalidraw",
   "03. Permanent Notes": "/posts/notes/permanent",
   "04. Hub Notes": "/posts/notes/hub",
+  "05. Outputs/Mindmap": "/posts/notes/mindmap",
   "05. Outputs/Blog": "/posts/blog",
   "05. Outputs/Static": "/posts/static"
 };
