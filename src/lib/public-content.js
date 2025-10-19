@@ -355,7 +355,7 @@ export function getAllStaticPosts() {
 }
 
 /**
- * Returns all "Notes" posts — including topics, hub, and permanent notes.
+ * Returns all "Notes" posts - including topics, hub, and permanent notes.
  *
  * It combines multiple note categories for general listing pages or indexing.
  *

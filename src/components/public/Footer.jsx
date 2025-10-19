@@ -1,6 +1,5 @@
 import { UI } from "@/data/constants";
 import Link from "next/link";
-import { ThemeToggle } from "../ui/theme-toggle";
 
 export function Footer() {
   return (
@@ -15,7 +14,6 @@ export function Footer() {
             );
           })}
         </ul>
-        <ThemeToggle />
       </nav>
     </footer>
   );

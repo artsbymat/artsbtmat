@@ -6,7 +6,7 @@
  *
  * ---
  * ## Purpose
- * Designed as a simple and consistent wrapper for page titles — e.g. section headers
+ * Designed as a simple and consistent wrapper for page titles - e.g. section headers
  * like "Blog", "Notes", or other top-level pages. It provides a flexible API while keeping
  * style minimal and predictable.
  *

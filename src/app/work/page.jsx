@@ -3,7 +3,7 @@ import { RenderMarkdown } from "@/components/public/Posts/RenderMarkdown";
 import { getAllStaticPosts } from "@/lib/public-content";
 
 export default function WorkPage() {
-  const data = getAllStaticPosts().filter((post) => post.slug === "/posts/static/work")[0];
+  const data = getAllStaticPosts().find((post) => post.slug === "/posts/static/work");
 
   const title = "Work – Personal Projects & Experiments";
   const description =

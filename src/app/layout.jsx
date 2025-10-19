@@ -22,12 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <Navigation />
             <main className="flex-grow">{children}</main>
