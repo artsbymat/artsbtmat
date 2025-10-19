@@ -35,6 +35,8 @@ export default async function DetailNotesPage({ params }) {
     description =
       "Notes that serve as connectors or entry points between related topics. A hub organizes relationships among notes, helping you navigate across themes and ideas.";
     posts = getAllHubPosts();
+  } else {
+    return notFound();
   }
   return (
     <div>
