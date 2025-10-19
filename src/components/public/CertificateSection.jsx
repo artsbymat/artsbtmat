@@ -8,7 +8,7 @@ export function CertificateSection() {
 
   return (
     <section className="mx-auto mb-4 max-w-7xl px-4 md:px-8">
-      <div className="border-border flex items-center justify-between border-b py-4">
+      <div className="border-border flex flex-col items-start border-b py-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-xl leading-snug font-medium">Certificates</h2>
           <p className="text-sm font-light">
