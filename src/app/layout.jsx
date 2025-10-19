@@ -18,6 +18,23 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400"]
 });
 
+export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
+  title: "Rahmat Ardiansyah Website",
+  description:
+    "Portofolio dan blog Rahmat Ardiansyah - tempat saya berbagi catatan, proyek, dan eksperimen seputar pengembangan web modern serta teknologi digital.",
+  keywords: [
+    "Rahmat Ardiansyah",
+    "Rahmat",
+    "Portofolio",
+    "Web",
+    "Developer",
+    "Frontend Developer",
+    "Backend Developer",
+    "Fullstack Developer"
+  ]
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
