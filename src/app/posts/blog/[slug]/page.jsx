@@ -3,6 +3,28 @@ import { RenderMarkdown } from "@/components/public/Posts/RenderMarkdown";
 import { getAllSlugs, getPostBySlug } from "@/lib/public-content";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const detail = getPostBySlug(`/posts/blog/${slug}`);
+  if (!detail) return {};
+
+  const description =
+    detail.frontmatter.description ||
+    detail.content
+      .replace(/[#_*`>\[\]]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 160);
+
+  return {
+    title: {
+      absolute: detail.title
+    },
+    description: description,
+    keywords: detail.frontmatter.tags
+  };
+}
+
 export function generateStaticParams() {
   const { blog } = getAllSlugs();
   return blog;
