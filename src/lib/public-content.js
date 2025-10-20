@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { extractTableOfContent, filename2slug, heading2id } from "./utils";
+import { extractTableOfContent, filename2slug, heading2id, normalizeTag } from "./utils";
 import { cache } from "react";
 import { IGNORE_PATHS, SLUG_RULES } from "@/data/constants";
 
@@ -166,6 +166,11 @@ export const getAllPosts = cache(() => {
       const { data: frontmatter, content } = matter(raw);
 
       if (!frontmatter.publish) return null;
+
+      // Normalize tags if they exist
+      if (Array.isArray(frontmatter.tags)) {
+        frontmatter.tags = frontmatter.tags.map(normalizeTag);
+      }
 
       const title = frontmatter.title || path.basename(file, path.extname(file));
       const slug = resolveSlug(file);
@@ -448,12 +453,9 @@ export function getTagCounts() {
 export function getPostsByTag(tag) {
   const posts = getAllPosts();
 
-  // Normalize tag comparison (case-insensitive)
-  const normalizedTag = tag.toLowerCase();
-
   // Return posts that include the specified tag
   return posts.filter((post) => {
     const tags = post.frontmatter.tags || [];
-    return tags.map((t) => t.toLowerCase()).includes(normalizedTag);
+    return tags.map((t) => t.toLowerCase()).includes(tag);
   });
 }
