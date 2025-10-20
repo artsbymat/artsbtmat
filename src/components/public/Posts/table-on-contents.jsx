@@ -15,13 +15,12 @@ export default function TableOfContents({ items = [] }) {
 
   if (items.length > 0) {
     return (
-      <div className="h-fit border-l pl-4">
+      <div className="border-l pl-4">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="hover:text-link mb-2 flex w-full cursor-pointer items-center justify-between text-base font-medium"
+          className="hover:text-link mb-2 flex w-full cursor-pointer items-center text-base font-medium"
         >
           <span>Table of Contents</span>
-          <span className="text-sm">{isOpen ? "▾" : "▸"}</span>
         </button>
 
         {isOpen && (
