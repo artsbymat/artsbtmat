@@ -21,7 +21,7 @@ export function CertificateCard({ data }) {
         {/* Content */}
         <div className="flex flex-col justify-center md:flex-1">
           <Link href={data.link}>
-            <h3 className="text-md leading-snug font-medium">{data.title}</h3>
+            <h3 className="text-lg leading-snug font-medium">{data.title}</h3>
           </Link>
 
           <p className="text-foreground/80 mt-3 text-base">{data.description}</p>

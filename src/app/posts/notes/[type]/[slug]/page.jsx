@@ -17,9 +17,7 @@ export async function generateMetadata({ params }) {
       .slice(0, 160);
 
   return {
-    title: {
-      absolute: detail.title
-    },
+    title: detail.title,
     description: description,
     keywords: detail.frontmatter.tags
   };

@@ -1,4 +1,5 @@
 import { visit } from "unist-util-visit";
+import { normalizeTag } from "../utils";
 
 /**
  * @fileoverview
@@ -86,7 +87,7 @@ export default function remarkTagLinks() {
           }
 
           // Normalize: replace `/` with `-`
-          const normalized = rawTag.replace(/\//g, "-");
+          const normalized = normalizeTag(rawTag);
 
           // Create a link node
           parts.push({
@@ -95,7 +96,7 @@ export default function remarkTagLinks() {
             children: [
               {
                 type: "text",
-                value: normalized
+                value: `#${normalized}`
               }
             ]
           });

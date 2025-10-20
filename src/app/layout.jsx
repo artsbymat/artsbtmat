@@ -20,9 +20,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
-  title: "Rahmat Ardiansyah Website",
+  title: "Rahmat Ardiansyah",
   description:
-    "Portofolio dan blog Rahmat Ardiansyah - tempat saya berbagi catatan, proyek, dan eksperimen seputar pengembangan web modern serta teknologi digital.",
+    "Portofolio dan blog Rahmat Ardiansyah, tempat berbagi catatan, proyek, dan eksperimen seputar pengembangan web modern, teknologi digital, dan produktivitas kreatif.",
   keywords: [
     "Rahmat Ardiansyah",
     "Rahmat",

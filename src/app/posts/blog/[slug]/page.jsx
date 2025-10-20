@@ -1,5 +1,6 @@
 import HeadingPage from "@/components/public/HeadingPage";
 import { RenderMarkdown } from "@/components/public/Posts/RenderMarkdown";
+import { BackToTop } from "@/components/ui/back-to-top";
 import { getAllSlugs, getPostBySlug } from "@/lib/public-content";
 import { notFound } from "next/navigation";
 
@@ -17,9 +18,7 @@ export async function generateMetadata({ params }) {
       .slice(0, 160);
 
   return {
-    title: {
-      absolute: detail.title
-    },
+    title: detail.title,
     description: description,
     keywords: detail.frontmatter.tags
   };
@@ -46,6 +45,7 @@ export default async function DetailBlogPage({ params }) {
     <article>
       <HeadingPage title={title} description={description} variant="posts" />
       <RenderMarkdown detail={detail} />
+      <BackToTop />
     </article>
   );
 }
