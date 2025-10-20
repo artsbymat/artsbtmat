@@ -11,10 +11,6 @@ export const UI = {
   ],
   FOOTER_LINKS: [
     {
-      title: "Rss",
-      href: "/rss.xml"
-    },
-    {
       title: "Sitemap",
       href: "/sitemap.xml"
     },
