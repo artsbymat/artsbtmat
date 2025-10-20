@@ -4,7 +4,7 @@ import { NotesPosts } from "@/components/public/NotesPosts";
 import { getAllBlogPosts, getAllNotesPosts } from "@/lib/public-content";
 
 export const metadata = {
-  title: "Blog dan catatan Rahmat Ardiansyah",
+  title: "Blog dan Catatan Rahmat Ardiansyah",
   description:
     "Kumpulan tulisan, catatan, dan mindmap dari Rahmat Ardiansyah. Menelusuri proses berpikir, eksperimen ide, dan pembelajaran seputar pengembangan web serta teknologi digital.",
   keywords: [

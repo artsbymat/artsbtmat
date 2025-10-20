@@ -4,6 +4,24 @@ import { Button } from "@/components/ui/button";
 import { getAllStaticJSON } from "@/lib/public-static";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Proyek dan Eksperimen Rahmat Ardiansyah",
+  description:
+    "Kumpulan proyek dan eksperimen pribadi yang mengeksplorasi ide melalui desain, kode, dan tulisan. Setiap karya mencerminkan rasa ingin tahu, pembelajaran berkelanjutan, serta eksplorasi praktis di dunia web dan teknologi digital.",
+  keywords: [
+    "Rahmat Ardiansyah",
+    "Projects",
+    "Works",
+    "Portofolio",
+    "Eksperimen",
+    "Pengembangan Web",
+    "Frontend Developer",
+    "Desain Web",
+    "Teknologi Digital",
+    "Kreativitas"
+  ]
+};
+
 export default function WorkPage() {
   const { data } = getAllStaticJSON().find(({ slug }) => slug === "Projects");
 
