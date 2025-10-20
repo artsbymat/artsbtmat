@@ -18,6 +18,8 @@ import { CustomPre } from "./pre";
 import { CustomImage } from "./img";
 import { CustomP } from "./p";
 import "@/styles/markdown-content.css";
+import TableOfContents from "./table-on-contents";
+import { BackToTop } from "@/components/ui/back-to-top";
 
 const arabicFont = localFont({
   src: "../../../assets/fonts/LPMQ-Isep-Misbah.woff2",
@@ -57,6 +59,7 @@ export function RenderMarkdown({ detail }) {
 
   return (
     <div id="markdown-content" className={`${cssClasses} ${arabicFont.variable}`}>
+      <TableOfContents items={detail.toc} />
       <MarkdownAsync
         components={{
           pre: (props) => <CustomPre {...props} />,
@@ -68,6 +71,7 @@ export function RenderMarkdown({ detail }) {
       >
         {detail.content}
       </MarkdownAsync>
+      <BackToTop />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import HeadingPage from "@/components/public/HeadingPage";
 import { RenderMarkdown } from "@/components/public/Posts/RenderMarkdown";
+import { BackToTop } from "@/components/ui/back-to-top";
 import { getAllSlugs, getPostBySlug } from "@/lib/public-content";
 import { notFound } from "next/navigation";
 
@@ -44,6 +45,7 @@ export default async function DetailBlogPage({ params }) {
     <article>
       <HeadingPage title={title} description={description} variant="posts" />
       <RenderMarkdown detail={detail} />
+      <BackToTop />
     </article>
   );
 }
