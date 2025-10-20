@@ -8,12 +8,12 @@ export const CustomImage = ({ src, alt = "" }) => {
     return <RenderExcalidraw src={src} alt={alt} />;
   }
 
-  const match = alt.match(/\((\d+)\)/);
-  const width = match ? parseInt(match[1], 10) : 1000;
+  const match = alt.match(/\|(\d+)\s*$/);
+  const width = match ? parseInt(match[1], 10) : 600;
   const aspectRatio = 4 / 3;
   const height = Math.round(width / aspectRatio);
 
-  const cleanAlt = alt.replace(/\s*\(\d+\)\s*/, "").trim();
+  const cleanAlt = alt.replace(/\s*\|\s*\d+\s*$/, "").trim();
 
   return (
     <div className="my-4 flex justify-center">

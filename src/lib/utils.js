@@ -148,3 +148,24 @@ export function formattedDateMonthYear(date) {
 export function formatMindmapTitle(string) {
   return string.replace(/\..*$/, "");
 }
+
+/**
+ * Normalizes a tag by replacing all forward slashes ("/") with hyphens ("-").
+ *
+ * This function is useful when tags are used in contexts such as URLs, slugs,
+ * or filenames where the "/" character can cause path conflicts or ambiguity.
+ *
+ * @param {string} rawTag - The original tag that may contain "/" characters.
+ * @returns {string} - A normalized version of the tag with all "/" replaced by "-".
+ *
+ * @example
+ * normalizeTag("web/dev");
+ * // Returns: "web-dev"
+ *
+ * @example
+ * normalizeTag("ai/machine/learning");
+ * // Returns: "ai-machine-learning"
+ */
+export function normalizeTag(rawTag) {
+  return rawTag.replace(/\//g, "-");
+}

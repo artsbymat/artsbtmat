@@ -113,7 +113,7 @@ function convertWikiLinks(post, slugIndex) {
   content = content.replace(/!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g, (match, filename, size) => {
     const cleanName = path.basename(filename.trim());
     const encodedPath = encodeURIComponent(cleanName);
-    const altText = size ? `${cleanName} (${size})` : cleanName;
+    const altText = size ? `${cleanName}|${size}` : cleanName;
     return `![${altText}](${imageBasePath}/${encodedPath})`;
   });
 

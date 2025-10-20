@@ -1,4 +1,4 @@
-import { formattedDateMonthYear } from "@/lib/utils";
+import { formattedDateMonthYear, normalizeTag } from "@/lib/utils";
 import Link from "next/link";
 
 export function NotePostCard({ post }) {
@@ -18,7 +18,7 @@ export function NotePostCard({ post }) {
               tags:{" "}
               {tags.map((tag, index) => (
                 <span key={tag}>
-                  <Link href={`/tags/${tag}`}>{tag}</Link>
+                  <Link href={`/tags/${normalizeTag(tag)}`}>{tag}</Link>
                   {index < tags.length - 1 && ", "}
                 </span>
               ))}
