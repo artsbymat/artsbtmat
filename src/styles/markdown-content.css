@@ -280,7 +280,11 @@ figure[data-rehype-pretty-code-figure] {
 }
 
 figure[data-rehype-pretty-code-figure] pre {
-  @apply max-h-[400px] overflow-auto py-[4px]!;
+  @apply max-h-[400px] py-[4px]!;
+}
+
+figure[data-rehype-pretty-code-figure] pre code {
+  @apply border-border overflow-auto border-1;
 }
 
 figure[data-rehype-pretty-code-figure] figcaption {
