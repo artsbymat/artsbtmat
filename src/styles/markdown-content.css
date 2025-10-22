@@ -275,16 +275,8 @@ code[data-theme*=" "] span {
   background-color: var(--shiki-dark-bg);
 }
 
-figure[data-rehype-pretty-code-figure] {
-  @apply my-4;
-}
-
 figure[data-rehype-pretty-code-figure] pre {
-  @apply max-h-[400px] py-[4px]!;
-}
-
-figure[data-rehype-pretty-code-figure] pre code {
-  @apply border-border overflow-auto border-1;
+  @apply max-h-[400px] overflow-x-auto;
 }
 
 figure[data-rehype-pretty-code-figure] figcaption {

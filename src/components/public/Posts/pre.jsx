@@ -21,12 +21,12 @@ export function CustomPre({ children, ...props }) {
   };
 
   return (
-    <div className="group relative">
+    <div className="group relative border-1!">
       <button
         disabled={isCopied}
         onClick={handleClickCopy}
         aria-label="Copy code"
-        className="absolute top-[8px] right-[4px] z-10 opacity-100 transition-opacity duration-200 group-hover:opacity-100 md:opacity-0"
+        className="absolute top-[4px] right-[4px] z-10 opacity-100 transition-opacity duration-200 group-hover:opacity-100 md:opacity-0"
       >
         {isCopied ? (
           <Check size={20} className="bg-background border-border border-1" />
