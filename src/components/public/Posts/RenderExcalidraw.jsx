@@ -39,7 +39,7 @@ export function RenderExcalidraw({ src, alt }) {
         dangerouslySetInnerHTML={{ __html: svgContent }}
       />
       <p className="hidden text-sm! text-yellow-700 md:mt-1! md:block">
-        Click and hold to enlarge. SHIFT + wheel to zoom. ESC to reset.
+        Drag to pan. SHIFT + wheel or pinch to zoom. Double-click to zoom. ESC to reset.
       </p>
     </>
   );
