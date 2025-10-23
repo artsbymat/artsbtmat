@@ -152,8 +152,8 @@ function CommentList({ comments }) {
       <div className="border-border mt-4 border p-4">
         <h3 className="text-base font-semibold">Shared Thoughts</h3>
         <p className="mb-4 text-sm">
-          Here's how others have reflected on this piece - their thoughts, questions, and moments of
-          resonance. Take a moment to read, connect, or add your own.
+          Here{"'"}s how others have reflected on this piece - their thoughts, questions, and
+          moments of resonance. Take a moment to read, connect, or add your own.
         </p>
         <div className="space-y-4">
           {comments.map((comment) => (
