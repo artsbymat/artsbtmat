@@ -62,7 +62,7 @@ export function RenderMarkdown({ detail }) {
       <TableOfContents items={detail.toc} />
       <MarkdownAsync
         components={{
-          pre: (props) => <CustomPre {...props} />,
+          pre: CustomPre,
           p: CustomP,
           img: CustomImage
         }}

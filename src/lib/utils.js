@@ -139,6 +139,60 @@ export function formattedDateMonthYear(date) {
 }
 
 /**
+ * Formats a given date into a short, human-readable string such as "Wed, 20 Aug 2025".
+ *
+ * This function extracts the weekday, day, month, and year components separately
+ * to ensure consistent ordering across locales, since `toLocaleString()` may vary
+ * in output format depending on the user's system settings.
+ *
+ * @function formattedDateDayMonthYear
+ * @param {Date} date - The date object to format.
+ * @returns {string} A formatted date string in the format "Wed, 20 Aug 2025".
+ *
+ * @example
+ * formattedDateDayMonthYear(new Date("2025-08-20"));
+ * // Returns: "Wed, 20 Aug 2025"
+ */
+export function formattedDateDayMonthYear(date) {
+  const weekday = date.toLocaleString("en-US", { weekday: "short" });
+  const day = date.toLocaleString("en-US", { day: "2-digit" });
+  const month = date.toLocaleString("en-US", { month: "short" });
+  const year = date.getFullYear();
+
+  return `${weekday}, ${day} ${month} ${year}`;
+}
+
+/**
+ * Formats a given date and time into a short, human-readable string
+ * such as "Thu, 23 Oct 2025, 10:10".
+ *
+ * This function extracts the weekday, day, month, year, and time components
+ * separately to maintain a consistent format across different locales,
+ * avoiding variations caused by `toLocaleString()` defaults.
+ *
+ * The time is represented in 24-hour format with zero-padded hours and minutes.
+ *
+ * @function formattedDateTime
+ * @param {Date} date - The date object to format.
+ * @returns {string} A formatted string in the format "Thu, 23 Oct 2025, 10:10".
+ *
+ * @example
+ * formattedDateTime(new Date("2025-10-23T10:10:00"));
+ * // Returns: "Thu, 23 Oct 2025, 10:10"
+ */
+export function formattedDateTime(date) {
+  const weekday = date.toLocaleString("en-US", { weekday: "short" });
+  const day = date.toLocaleString("en-US", { day: "2-digit" });
+  const month = date.toLocaleString("en-US", { month: "short" });
+  const year = date.getFullYear();
+
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+
+  return `${weekday}, ${day} ${month} ${year}, ${hours}:${minutes}`;
+}
+
+/**
  * Removes any substring that appears after the first dot ('.') in the title.
  * Example: "Fitur Di Obsidian Excalidraw.Light" → "Fitur Di Obsidian Excalidraw"
  *

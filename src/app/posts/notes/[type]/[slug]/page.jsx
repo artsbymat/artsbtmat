@@ -1,4 +1,5 @@
 import HeadingPage from "@/components/public/HeadingPage";
+import { CommentSection } from "@/components/public/Posts/CommentSection";
 import { RenderMarkdown } from "@/components/public/Posts/RenderMarkdown";
 import { getAllSlugs, getPostBySlug } from "@/lib/public-content";
 import { notFound } from "next/navigation";
@@ -46,6 +47,7 @@ export default async function DetailBlogPage({ params }) {
     <article>
       <HeadingPage title={title} description={description} variant="posts" />
       <RenderMarkdown detail={detail} />
+      <CommentSection slug={detail.slug} />
     </article>
   );
 }
