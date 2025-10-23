@@ -26,6 +26,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-markdown": "^10.1.0",
+    "react-medium-image-zoom": "^5.4.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-callouts": "^2.1.2",
     "rehype-external-links": "^3.0.0",
