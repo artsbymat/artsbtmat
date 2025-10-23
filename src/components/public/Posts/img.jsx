@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { RenderExcalidraw } from "./RenderExcalidraw";
+import { ImageZoom } from "@/components/ui/image-zoom";
 
 export const CustomImage = ({ src, alt = "" }) => {
   if (src.startsWith(`/content/Attachments/excalidraw`)) {
@@ -23,17 +24,19 @@ export const CustomImage = ({ src, alt = "" }) => {
           height: "auto"
         }}
       >
-        <Image
-          src={src}
-          alt={cleanAlt}
-          width={width}
-          height={height}
-          style={{
-            width: "100%",
-            height: "auto",
-            objectFit: "contain"
-          }}
-        />
+        <ImageZoom>
+          <Image
+            src={src}
+            alt={cleanAlt}
+            width={width}
+            height={height}
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "contain"
+            }}
+          />
+        </ImageZoom>
       </div>
     </div>
   );
