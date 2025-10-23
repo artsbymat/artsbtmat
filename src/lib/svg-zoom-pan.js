@@ -18,12 +18,15 @@ export function SVGZoomPan(container) {
   let lastRootX = 0;
   let lastRootY = 0;
   let lastPinchDist = 0;
+  let startX = 0;
+  let startY = 0;
+  let hasMoved = false;
 
   // Styles for smoother interaction
   svgElement.style.cursor = "grab";
   svgElement.style.userSelect = "none";
   svgElement.style.webkitUserSelect = "none";
-  svgElement.style.touchAction = "none"; // enable pinch-zoom via pointer events
+  svgElement.style.touchAction = "none";
 
   const clamp = (v, min, max) => Math.max(min, Math.min(v, max));
 
@@ -119,15 +122,24 @@ export function SVGZoomPan(container) {
 
   // Panning / Pinch-to-zoom with Pointer Events
   const handlePointerDown = (e) => {
+    // Check if clicking on a link - if so, allow normal link behavior
+    const target = e.target;
+    const isLink = target.closest('a');
+    if (isLink) {
+      return;
+    }
+
     svgElement.setPointerCapture?.(e.pointerId);
     updatePointer(e);
     if (pointers.size === 1) {
       isDragging = true;
       isPinching = false;
+      hasMoved = false;
       const p = clientToSvg(e.clientX, e.clientY);
       lastRootX = p.x;
       lastRootY = p.y;
-      enablePointerEvents(false);
+      startX = p.x;
+      startY = p.y;
       svgElement.style.cursor = "grabbing";
     } else if (pointers.size === 2) {
       isDragging = false;
@@ -153,6 +165,14 @@ export function SVGZoomPan(container) {
       const p = clientToSvg(e.clientX, e.clientY);
       const dx = p.x - lastRootX;
       const dy = p.y - lastRootY;
+
+      // Track if significant movement occurred
+      const distFromStart = Math.hypot(p.x - startX, p.y - startY);
+      if (!hasMoved && distFromStart > 3) {
+        hasMoved = true;
+        enablePointerEvents(false);
+      }
+
       lastRootX = p.x;
       lastRootY = p.y;
       panX += dx;
@@ -169,9 +189,12 @@ export function SVGZoomPan(container) {
       if (remaining) {
         isPinching = false;
         isDragging = true;
+        hasMoved = false;
         const p = clientToSvg(remaining.x, remaining.y);
         lastRootX = p.x;
         lastRootY = p.y;
+        startX = p.x;
+        startY = p.y;
       }
     } else if (pointers.size === 0) {
       isDragging = false;
@@ -179,6 +202,7 @@ export function SVGZoomPan(container) {
       enablePointerEvents(true);
       svgElement.style.cursor = "grab";
       lastPinchDist = 0;
+      hasMoved = false;
     }
   };
 
@@ -213,6 +237,8 @@ export function SVGZoomPan(container) {
   svgElement.addEventListener("dblclick", handleDblClick);
   document.addEventListener("keydown", handleKeyDown);
 
+  // Enable links by default
+  enablePointerEvents(true);
   applyTransform();
 
   // Cleanup on unmount

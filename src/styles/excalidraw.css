@@ -16,6 +16,13 @@ svg.excalidraw-svg {
   cursor: grab;
 }
 
+svg.excalidraw-svg a {
+  cursor: pointer;
+  pointer-events: all;
+  user-select: auto;
+  -webkit-user-select: auto;
+}
+
 svg.excalidraw-svg a:hover text {
   fill: var(--link);
   text-decoration: underline;
