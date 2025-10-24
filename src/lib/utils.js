@@ -223,3 +223,47 @@ export function formatMindmapTitle(string) {
 export function normalizeTag(rawTag) {
   return rawTag.replace(/\//g, "-");
 }
+
+/**
+ * Strips common Markdown formatting into readable plain text.
+ *
+ * - Removes fenced code fences and their language labels (keeps inner code)
+ * - Drops headings, emphasis, inline code markers, links/images syntax
+ * - Unquotes blockquotes and collapses whitespace
+ *
+ * @param {string} [str=""] Raw markdown string
+ * @returns {string} Plain text without markdown artifacts
+ */
+export function cleanMarkdown(str = "") {
+  return String(str)
+    .replace(/```[^\n]*\n([\s\S]*?)```/g, "$1")
+    .replace(/^#{1,6}\s*/gm, "")
+    .replace(/(\*\*|__)(.*?)\1/g, "$2")
+    .replace(/(\*|_)(.*?)\1/g, "$2")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\[([^\]]+)\]\([^\)]+\)/g, "$1")
+    .replace(/!\[([^\]]*)\]\([^\)]+\)/g, "$1")
+    .replace(/^\s{0,3}>\s?/gm, "")
+    .replace(/-{3,}/g, "")
+    .replace(/<\/?[^>]+(>|$)/g, "")
+    .replace(/[*_~`]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Escapes HTML special characters after cleaning markdown.
+ * Useful when injecting text via dangerouslySetInnerHTML.
+ *
+ * @param {string} [str=""] Raw markdown or text content
+ * @returns {string} Safe HTML-escaped, markdown-free string
+ */
+export function escapeHtml(str = "") {
+  const clean = cleanMarkdown(str);
+  return String(clean)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}

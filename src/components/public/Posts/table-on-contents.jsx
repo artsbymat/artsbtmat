@@ -24,7 +24,7 @@ export default function TableOfContents({ items = [] }) {
         </button>
 
         {isOpen && (
-          <ul className="space-y-2!">
+          <ul className="space-y-2! pl-0!">
             {items.map((item) => (
               <li
                 key={item.id}

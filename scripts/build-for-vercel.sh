@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-set -e
+# Purpose: Re-clone content repo during Vercel build and run app build.
+# Requires: environment variable GITHUB_PAT with GitHub token (read access).
+set -euo pipefail
 
 cd "$(dirname "$0")/../" || exit 1
 
@@ -16,7 +18,7 @@ CONTENT_DIR="src/content"
 CONTENT_REPO="https://github.com/artsbymat/2nd-brain.git"
 BRANCH="main"
 
-echo "🔄 Delete old submodule..."
+echo "🔄 Delete old content directory..."
 rm -rf "${CONTENT_DIR}"
 
 echo "📥 re-cloning content repository..."

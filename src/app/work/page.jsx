@@ -35,7 +35,7 @@ export default function WorkPage() {
 
       <section className="mx-auto mb-4 max-w-7xl px-4 md:px-8">
         <div className="border-border flex items-center justify-between border-b py-4">
-          <div className="">
+          <div>
             <h2 className="text-xl leading-snug font-medium">Projects</h2>
             <p className="text-sm font-light">
               A collection of certifications that reflect my commitment to continuous learning and
