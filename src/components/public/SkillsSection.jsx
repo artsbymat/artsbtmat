@@ -41,7 +41,7 @@ export function SkillsSection() {
             <tr>
               {categorizedTools.map(({ category, tools }) => (
                 <td key={category} className="border-border border px-4 py-2">
-                  <ul className="list-inside list-disc">{tools.join(", ")}</ul>
+                  <p className="list-inside list-disc">{tools.join(", ")}</p>
                 </td>
               ))}
             </tr>
