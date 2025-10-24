@@ -109,7 +109,7 @@ export function SearchDialog() {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-h-[90vh] rounded-none">
+      <DialogContent className="max-h-[90vh] overflow-hidden rounded-none">
         <DialogHeader>
           <DialogTitle>Search Posts</DialogTitle>
           <DialogDescription>Search through your published posts.</DialogDescription>
@@ -126,7 +126,7 @@ export function SearchDialog() {
           />
         </div>
 
-        <ScrollArea className="border-border h-[400px] border-1 p-4">
+        <ScrollArea className="border-border h-[clamp(200px,50vh,400px)] border p-4">
           {!indexReady && open ? (
             <p className="text-sm">Loading index…</p>
           ) : isPending ? (
@@ -136,7 +136,7 @@ export function SearchDialog() {
           ) : (
             <div className="divide-border-border space-y-4 divide-y">
               {results.map((post) => (
-                <div key={post.slug} className="">
+                <div key={post.slug}>
                   <Link href={post.slug} className="font-medium hover:underline">
                     <DialogClose asChild>
                       <span
