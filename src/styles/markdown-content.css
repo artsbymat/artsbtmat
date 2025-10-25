@@ -428,3 +428,16 @@ a[rel~="nofollow"]::after {
 .quran span[data-rehype-pretty-code-figure] code span {
   font-family: serif;
 }
+
+.highlighted {
+  animation: flash 1.5s ease;
+}
+
+@keyframes flash {
+  0% {
+    background-color: var(--color-primary);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
