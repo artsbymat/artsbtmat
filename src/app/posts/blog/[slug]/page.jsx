@@ -1,5 +1,6 @@
 import HeadingPage from "@/components/public/HeadingPage";
 import { CommentSection } from "@/components/public/Posts/CommentSection";
+import HeadingHighlight from "@/components/public/Posts/heading-highlight";
 import { RenderMarkdown } from "@/components/public/Posts/RenderMarkdown";
 import { ThumbnailBlog } from "@/components/public/Posts/ThumbnailBlog";
 import { BackToTop } from "@/components/ui/back-to-top";
@@ -48,7 +49,7 @@ export default async function DetailBlogPage({ params }) {
       <HeadingPage title={title} description={description} variant="posts" />
       <ThumbnailBlog image={detail.frontmatter.thumbnail} />
       <RenderMarkdown detail={detail} />
-      <BackToTop />
+      <HeadingHighlight />
       <CommentSection slug={detail.slug} />
     </article>
   );
