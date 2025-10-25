@@ -30,7 +30,19 @@ export default function TableOfContents({ items = [] }) {
                 key={item.id}
                 onClick={() => handleClickItem(item.id)}
                 className={`hover:text-link cursor-pointer list-none text-sm! font-light ${
-                  item.level === 1 ? "" : item.level === 2 ? "ml-4" : item.level === 3 ? "ml-8" : ""
+                  item.level === 1
+                    ? ""
+                    : item.level === 2
+                      ? "ml-4"
+                      : item.level === 3
+                        ? "ml-6"
+                        : item.level === 4
+                          ? "ml-8"
+                          : item.level === 5
+                            ? "ml-10"
+                            : item.level === 6
+                              ? "ml-12"
+                              : ""
                 }`}
               >
                 {item.text}
