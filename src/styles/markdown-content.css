@@ -430,7 +430,7 @@ a[rel~="nofollow"]::after {
 }
 
 .highlighted {
-  animation: flash 3s ease;
+  animation: flash 1.5s ease;
 }
 
 @keyframes flash {
