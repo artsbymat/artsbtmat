@@ -1,4 +1,5 @@
 import { UI } from "@/data/constants";
+import Image from "next/image";
 import Link from "next/link";
 
 export function Footer() {
@@ -14,6 +15,12 @@ export function Footer() {
             );
           })}
         </ul>
+        <Image
+          src="https://wakatime.com/badge/user/cb7cf757-e629-4d2a-b8b2-840c3681d84a/project/3b34ffda-951b-4f0d-b516-3400da565f72.svg?style=flat-square"
+          alt="Wakatime"
+          width={180}
+          height={180}
+        />
       </nav>
     </footer>
   );
